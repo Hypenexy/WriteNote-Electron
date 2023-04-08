@@ -1,6 +1,8 @@
 # WriteNote in Electron
 
-# Installation
+The way WriteNote runs locally on your computer!
+
+## Installation
 
 The following commmands are run in a terminal.
 

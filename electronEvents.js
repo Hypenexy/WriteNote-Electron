@@ -3,10 +3,27 @@ const { clipboard } = require('electron')
 // clipboard.writeText('hello i am a bit of text!')
 
 
-function PasteElectron(){
-    const text = clipboard.readText()
-    console.log(text)
-}
+// function PasteElectron(){
+//     const text = clipboard.readText()
+//     console.log(text)
+// }
+
+// const { contextBridge, ipcRenderer } = require('electron');
+// // var Data = {message: "Looking at their library", message2: ""};
+// // ipcRenderer.send('request-mainprocess-action', Data);
+
+// const API = {
+// 	sendMsg: function(msg) {
+// 		ipcRenderer.send('request-mainprocess-action', {message: msg[0], message2: msg[1]})
+// 	}
+// };
+
+// contextBridge.exposeToMainWorld("api", API);
+
+// updateDiscordRichPresence("bruh", "whyyy");
+
+// const { contextBridge, ipcRenderer } = require("electron");
+// contextBridge.exposeInMainWorld("api", API);
 
 var isApp = true
 

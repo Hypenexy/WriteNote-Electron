@@ -107,13 +107,34 @@ async function isUsedSystemLightTheme() {
 let tray = null
 app.whenReady().then(() => {
   tray = new Tray(__dirname + '/images/wnTrayDark.png')
+  var executeInApp = win.webContents.executeJavaScript
   const contextMenu = Menu.buildFromTemplate([
-    { label: 'Open', click: () => win.webContents.executeJavaScript('openNote()') },
-    { label: 'Save', click: () => win.webContents.executeJavaScript('save()') },
-    //{ hr: '' },
-    { label: 'About', click: () => win.webContents.executeJavaScript('showSettings("About")') },
-    //{ hr: '' },
-	  { label: 'Exit', click: () => app.exit(0) }
+    { label: 'Open', click: () => executeInApp('openSidepanel("open")') },
+    { label: 'Save', click: () => executeInApp('SaveFile()') },
+    { type: 'separator' },
+    { label: 'About', click: () => executeInApp('showSettings("About")') },
+    { type: 'separator' },
+	  { label: 'Exit', click: () => app.exit(0) },
+    // { Submenu examples
+    //   label: 'Edit',
+    //   submenu: [
+    //     { role: 'undo' },
+    //     { role: 'redo' },
+    //     { type: 'separator' },
+    //     { role: 'cut' },
+    //     { role: 'copy' },
+    //     { role: 'paste' },
+    //     { role: 'selectAll' },
+    //     { type: 'separator' },
+    //     {
+    //       label: 'Speech',
+    //       submenu: [
+    //         { role: 'startSpeaking' },
+    //         { role: 'stopSpeaking' }
+    //       ]
+    //     }
+    //   ]
+    // },
   ])
   tray.setToolTip('WriteNote')
   tray.setContextMenu(contextMenu)
