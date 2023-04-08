@@ -4,14 +4,24 @@
   "description": "A new way to take notes, powered by Electron",
   "main": "index.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "author": "Hypenexy - Midelight",
   "license": "MIT",
   "dependencies": {
     "discord-rich-presence": "^0.0.8",
     "dotenv": "^16.0.3",
-    "electron": "^24.0.0",
+    "electron-squirrel-startup": "^1.0.0",
     "winreg": "^1.2.4"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.1.1",
+    "@electron-forge/maker-deb": "^6.1.1",
+    "@electron-forge/maker-rpm": "^6.1.1",
+    "@electron-forge/maker-squirrel": "^6.1.1",
+    "@electron-forge/maker-zip": "^6.1.1",
+    "electron": "^24.0.0"
   }
 }

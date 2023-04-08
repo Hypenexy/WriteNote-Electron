@@ -1,6 +1,6 @@
 //TODO:
-//Reread this, because at the end there is distribution code
-//https://www.electronjs.org/docs/latest/tutorial/quick-start
+//Upgrade the installation with that inno program
+//https://www.electronjs.org/docs/latest/tutorial/tutorial-packaging
 
 const { app, BrowserWindow, Menu, Tray, ipcMain, nativeTheme } = require('electron')
 // app.commandLine.appendSwitch('--disable-features=SameSiteByDefaultCookies')
