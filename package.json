@@ -1,0 +1,17 @@
+{
+  "name": "writenote-electron",
+  "version": "1.0.0",
+  "description": "A new way to take notes, powered by Electron",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Hypenexy - Midelight",
+  "license": "MIT",
+  "dependencies": {
+    "discord-rich-presence": "^0.0.8",
+    "dotenv": "^16.0.3",
+    "electron": "^24.0.0",
+    "winreg": "^1.2.4"
+  }
+}
