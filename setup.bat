@@ -1,1 +1,1 @@
-git clone https://github.com/Hypenexy/WriteNote.git
+npm i && git clone https://github.com/Hypenexy/WriteNote.git

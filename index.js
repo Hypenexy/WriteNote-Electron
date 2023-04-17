@@ -107,12 +107,11 @@ async function isUsedSystemLightTheme() {
 let tray = null
 app.whenReady().then(() => {
   tray = new Tray(__dirname + '/images/wnTrayDark.png')
-  var executeInApp = win.webContents.executeJavaScript
   const contextMenu = Menu.buildFromTemplate([
-    { label: 'Open', click: () => executeInApp('openSidepanel("open")') },
-    { label: 'Save', click: () => executeInApp('SaveFile()') },
+    { label: 'Open', click: () => win.webContents.executeJavaScript('openSidepanel("open")') },
+    { label: 'Save', click: () => win.webContents.executeJavaScript('SaveFile()') },
     { type: 'separator' },
-    { label: 'About', click: () => executeInApp('showSettings("About")') },
+    { label: 'About', click: () => win.webContents.executeJavaScript('showSettings("About")') },
     { type: 'separator' },
 	  { label: 'Exit', click: () => app.exit(0) },
     // { Submenu examples
