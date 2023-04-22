@@ -1,4 +1,5 @@
 const { clipboard } = require('electron')
+const username = require("os").userInfo().username
 
 // clipboard.writeText('hello i am a bit of text!')
 
@@ -28,6 +29,7 @@ const { clipboard } = require('electron')
 var isApp = true
 
 window.addEventListener("load", function(){
+    console.log(username)
     console.log("hiiii")
     var electronStyle = this.document.createElement("style")
     electronStyle.innerText = "header{-webkit-app-region: drag;padding-right: 140px} header *{-webkit-app-region: no-drag;}"

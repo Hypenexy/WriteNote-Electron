@@ -53,6 +53,9 @@ app.whenReady().then(() => {
 		createWindow()
     }
   })
+  win.webContents.on('did-finish-load', function() {
+    win.webContents.executeJavaScript("isApp = true")
+  })
 })
 
 app.on('window-all-closed', () => {
