@@ -1,6 +1,6 @@
 # WriteNote in Electron
 
-The way WriteNote runs locally on your computer!
+The way [WriteNote](https://midelight.net/WriteNote) runs locally on your computer!
 
 ## Installation
 
