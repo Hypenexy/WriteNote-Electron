@@ -2,6 +2,8 @@
 
 The way [WriteNote](https://midelight.net/WriteNote) runs locally on your computer!
 
+![image](https://github.com/Hypenexy/WriteNote-Electron/assets/61563710/f9e703c1-fab9-459e-9519-93083819f468)
+
 ## Installation
 
 The following commmands are run in a terminal.
