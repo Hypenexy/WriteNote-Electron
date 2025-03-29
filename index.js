@@ -11,8 +11,8 @@ var splash;
 var win;
 // const loadingEvents = new EventEmitter()
 function createWindow () {
-	splash = new BrowserWindow({width: 350, height: 450, transparent: true, frame: false, alwaysOnTop: true, center: true, icon: __dirname + '/favicon.ico'});
-	splash.loadFile('images/wnsplash.png');
+	splash = new BrowserWindow({width: 512, height: 512, transparent: true, frame: false, alwaysOnTop: true, center: true, icon: __dirname + '/favicon.ico'});
+	splash.loadFile('loadAnimation/index.html');
 	
 	win = new BrowserWindow({
 		webPreferences: {
@@ -23,25 +23,74 @@ function createWindow () {
 		},
 
     titleBarStyle: 'hidden',
-    titleBarOverlay: {
-      color: '#1a1a1a',
-      symbolColor: '#c8c8c8',
-      height: 60
-    },
+    // titleBarOverlay: {
+    //   color: '#1a1a1a',
+    //   symbolColor: '#c8c8c8',
+    //   height: 60
+    // },
+    transparent: true,
+    frame: false,
+    maximizable: true,
+
 		width: 946,
 		height: 633,
 		show: false,
-		backgroundColor: '#000',
+		// backgroundColor: '#000',
 		icon: __dirname + '/favicon.ico'
 	})
 	// win.removeMenu()
+  
+  disableDragRegionRightMenu(win);
 	  
-	win.loadFile('WriteNote/index.html')
+	win.loadFile('WriteNote/App/index.html')
 
 	win.once('ready-to-show', () => {
 		splash.destroy();
 		win.show();
-	});	  
+	});
+  
+  win.webContents.once('dom-ready', () => {
+    headerCode = `loadHeader(true)`;
+    win.webContents.executeJavaScript(headerCode);
+    win.transparent = false;
+  });
+}
+
+const electronIpcMain = require('electron').ipcMain;
+
+electronIpcMain.on('window:minimize', () => {
+  // Now we can access the window variable
+  win.minimize();
+})
+
+electronIpcMain.on('window:maximize', () => {
+  // Now we can access the window variable
+  win.maximize();
+})
+
+electronIpcMain.on('window:restore', () => {
+  // Now we can access the window variable
+  win.restore();
+})
+
+electronIpcMain.on('window:close', () => {
+  // Now we can access the window variable
+  win.close();
+})
+
+function disableDragRegionRightMenu(win) {
+  if (process.platform !== 'win32') return
+
+  const WM_INITMENU = 0x0116 // WM_INITMENU
+  if (!win.isWindowMessageHooked(WM_INITMENU)) {
+    win.hookWindowMessage(WM_INITMENU, (wParam, lParam) => {
+      // disable the window menu when right click on the title bar
+      win.setEnabled(false)
+      setTimeout(() => {
+        win.setEnabled(true)
+      }, 50)
+    })
+  }
 }
 
 
