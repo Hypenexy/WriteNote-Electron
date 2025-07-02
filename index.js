@@ -28,7 +28,7 @@ function createWindow () {
     //   symbolColor: '#c8c8c8',
     //   height: 60
     // },
-    transparent: true,
+    // transparent: true,
     frame: false,
     maximizable: true,
 

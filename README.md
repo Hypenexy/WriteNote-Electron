@@ -15,7 +15,7 @@ git clone https://github.com/Hypenexy/WriteNote-Electron.git
 cd WriteNote-Electron
 ```
 
-All of the next commands can be alternatively run 
+All of the next commands can be alternatively run  
 when running the setup.bat file in the repository.
 
 Install dependencies
