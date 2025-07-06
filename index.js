@@ -112,34 +112,34 @@ app.on('window-all-closed', () => {
 })
 
 //Discord Rich Presence
-require('dotenv').config()
-const client = require('discord-rich-presence')(process.env.discordKey);
-const timeLaunched = Date.now();
+// require('dotenv').config()
+// const client = require('discord-rich-presence')(process.env.discordKey);
+// const timeLaunched = Date.now();
  
-function discordStatus(text, subtext){
-	if(subtext){
-		client.updatePresence({
-		  details: text,
-		  largeImageKey: "writenotets",
-		  state: subtext,
-		  startTimestamp: timeLaunched,
-		  instance: true
-		});
-	}
-	else{
-		client.updatePresence({
-		  details: text,
-		  largeImageKey: "writenotets",
-		  instance: true
-		});
-	}
-}
+// function discordStatus(text, subtext){
+// 	if(subtext){
+// 		client.updatePresence({
+// 		  details: text,
+// 		  largeImageKey: "writenotets",
+// 		  state: subtext,
+// 		  startTimestamp: timeLaunched,
+// 		  instance: true
+// 		});
+// 	}
+// 	else{
+// 		client.updatePresence({
+// 		  details: text,
+// 		  largeImageKey: "writenotets",
+// 		  instance: true
+// 		});
+// 	}
+// }
 
-discordStatus("Looking at their library");
+// discordStatus("Looking at their library");
 
-ipcMain.on('request-mainprocess-action', (event, arg) => {
-  discordStatus(arg.message, arg.message2);
-});
+// ipcMain.on('request-mainprocess-action', (event, arg) => {
+//   discordStatus(arg.message, arg.message2);
+// });
 //
 
 //tray
@@ -156,9 +156,10 @@ async function isUsedSystemLightTheme() {
   }));
 }
 
-let tray = null
+let tray = null,
+  trayWindow;
 app.whenReady().then(() => {
-  tray = new Tray(__dirname + '/images/wnTrayDark.png')
+  tray = new Tray(__dirname + '/images/wnTrayDark.png');
   const contextMenu = Menu.buildFromTemplate([
     { label: 'Open', click: () => win.webContents.executeJavaScript('openSidepanel("open")') },
     { label: 'Save', click: () => win.webContents.executeJavaScript('SaveFile()') },
@@ -190,6 +191,10 @@ app.whenReady().then(() => {
   tray.setToolTip('WriteNote')
   tray.setContextMenu(contextMenu)
   tray.on('click', () => app.focus());
+  
+	trayWindow = new BrowserWindow({width: 200, height: 350, transparent: false, frame: false, alwaysOnTop: true, center: false, icon: __dirname + '/favicon.ico'});
+	trayWindow.loadFile('tray/index.html');
+  // tray.show();
 
 
   // app.on('balloon-click', () => { i genually don't know what this does or used to do
@@ -198,21 +203,21 @@ app.whenReady().then(() => {
 
   function updateTrayIcon(isDarkTheme){
     if(isDarkTheme==true){
-      tray.setImage(__dirname + '/images/wnTrayLight.png')
+      tray.setImage(__dirname + '/images/wnTrayDark.png');
     }
     else{
-      tray.setImage(__dirname + '/images/wnTrayLight.png')
+      tray.setImage(__dirname + '/images/wnTrayLight.png');
     }
   }
 
   nativeTheme.on('updated', () => isUsedSystemLightTheme().then(function(result){
     updateTrayIcon(result)
-  }))
+  }));
 
   isUsedSystemLightTheme().then(function(result){
     updateTrayIcon(result)
-  })
-})
+  });
+});
 
 
 
